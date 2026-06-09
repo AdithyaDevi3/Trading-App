@@ -1,0 +1,47 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Expo
+.expo/
+.expo-shared/
+web-build/
+
+# React Native / build
+android/app/build/
+ios/Pods/
+ios/build/
+android/
+ios/
+
+# Xcode
+*.xcworkspace
+*.xcuserstate
+*.xcuserdatad
+*.xcodeproj/project.xcworkspace/
+
+# Gradle
+.gradle/
+/build/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor directories and files
+*.sublime-workspace
+*.sublime-project
+.idea/
+.vscode/
+
+# Environment
+.env
+.env.*
+
+# Misc
+*.log
+*.tmp
+*.swp
