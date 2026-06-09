@@ -45,3 +45,10 @@ ios/
 *.log
 *.tmp
 *.swp
+
+# Lockfiles and generated JSON (ignore lock and generated artifact JSONs, not source JSONs like package.json or app.json)
+package-lock.json
+yarn.lock
+npm-shrinkwrap.json
+*.local.json
+*.log.json
