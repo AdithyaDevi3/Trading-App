@@ -9,21 +9,22 @@ This is a scaffolded React Native (Expo) trading app. It includes:
 
 Getting started
 
-1. Install dependencies:
+1. Install dependencies (zsh / macOS):
 
 ```bash
-cd Trading-App
+cd /Users/home/Documents/Workspace/Projects/Trading-App
 npm install
 ```
 
-2. Start Expo:
+2. Start Expo dev server:
 
 ```bash
 npm start
 ```
 
-3. Open the Expo app on your device or simulator.
+3. Open the Expo Go app on your device or run a simulator and load the project.
 
 Notes
 
 - This scaffold uses a mock data provider by default. You can add real API integration (Alpha Vantage) in `src/utils/api.js` and set your API key in Settings.
+- Storage uses `expo-secure-store` so the app works with Expo Go without native prebuilds.

@@ -9,6 +9,12 @@ yarn-error.log*
 .expo-shared/
 web-build/
 
+# Metro / bundler cache
+.expo/cache/
+.expo/*-cache/
+metro-cache/
+bundler-cache/
+
 # React Native / build
 android/app/build/
 ios/Pods/
@@ -52,3 +58,6 @@ yarn.lock
 npm-shrinkwrap.json
 *.local.json
 *.log.json
+
+# Ignore node_modules just in case
+node_modules/

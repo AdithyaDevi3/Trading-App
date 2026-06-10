@@ -1,9 +1,10 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
 
+// Use Expo SecureStore which works with Expo Go without native prebuild
 export default {
   async get(key) {
     try {
-      const v = await AsyncStorage.getItem(key);
+      const v = await SecureStore.getItemAsync(key);
       return v ? JSON.parse(v) : null;
     } catch (e) {
       console.warn('storage.get', e);
@@ -12,7 +13,7 @@ export default {
   },
   async set(key, value) {
     try {
-      await AsyncStorage.setItem(key, JSON.stringify(value));
+      await SecureStore.setItemAsync(key, JSON.stringify(value));
     } catch (e) {
       console.warn('storage.set', e);
     }
