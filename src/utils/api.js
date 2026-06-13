@@ -51,4 +51,38 @@ export default {
     await Promise.all(symbols.map(async s => { out[s] = await this.getQuote(s); }));
     return out;
   }
+  ,
+  // return array of recent closing prices (oldest->newest)
+  async getHistory(symbol, days = 30) {
+    const settings = await getSettings();
+    if (settings.provider === 'mock') {
+      // synthesize a small sine-ish walk around base
+      const base = (mockPrices[symbol] && mockPrices[symbol].price) || 100;
+      const out = [];
+      for (let i = days - 1; i >= 0; i--) {
+        const noise = Math.sin(i / 3) * (base * 0.01) + (Math.random() - 0.5) * (base * 0.005);
+        out.push(Number((base + noise - i * 0.02).toFixed(2)));
+      }
+      return out;
+    }
+    if (settings.provider === 'alphavantage' || settings.provider === 'alpha') {
+      if (!settings.apiKey) throw new Error('API key not set in Settings');
+      const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${encodeURIComponent(symbol)}&apikey=${encodeURIComponent(settings.apiKey)}&outputsize=compact`;
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`Network error: ${res.status}`);
+        const json = await res.json();
+        const series = json['Time Series (Daily)'] || json['Time Series (daily)'] || null;
+        if (!series) return [];
+        const dates = Object.keys(series).sort(); // oldest first
+        const recent = dates.slice(-days);
+        const out = recent.map(d => Number(parseFloat(series[d]['4. close']).toFixed(2)));
+        return out;
+      } catch (e) {
+        console.warn('AlphaVantage history failed, returning empty', e);
+        return [];
+      }
+    }
+    return [];
+  }
 };

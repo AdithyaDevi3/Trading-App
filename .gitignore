@@ -46,6 +46,8 @@ ios/
 # Environment
 .env
 .env.*
+.env.local
+.env.*.local
 
 # Misc
 *.log
@@ -58,6 +60,47 @@ yarn.lock
 npm-shrinkwrap.json
 *.local.json
 *.log.json
+requirements*.txt
+*.generated.json
+*.lock.json
+
+# Expo/credentials and secrets
+# Do not commit credentials, keystores, or platform service files
+*.jks
+*.keystore
+*.p12
+*.pfx
+expo-credentials.json
+credentials.json
+google-services.json
+GoogleService-Info.plist
+fastlane/
+
+# TLS/SSH keys and certs
+*.pem
+*.key
+
+# Build output
+dist/
+build/
+android/app/build/
+ios/Pods/
+ios/build/
+
+# macOS
+.DS_Store
+
+# Editor directories and files
+*.sublime-workspace
+*.sublime-project
+.idea/
+.vscode/
+
+# Misc
+*.log
+*.tmp
+*.swp
+
 
 # Ignore node_modules just in case
 node_modules/
